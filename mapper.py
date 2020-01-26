@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 import sys
+import nltk
+from nltk.corpus import stopwords
 
 # get all lines from stdin
 for line in sys.stdin:
@@ -10,5 +12,7 @@ for line in sys.stdin:
     words = line.split()
 
     # output tuples (word, 1) in tab-delimited format
+    stopwords = set(stopwords.words('english'))
     for word in words:
-        print '%s\t%s' % (word, "1")
+	if word not in stopwords:
+            print '%s\t%s' % (word, "1")
